@@ -1,0 +1,13 @@
+# Visual Studio and .NET generated files
+.vs/
+**/bin/
+**/obj/
+**/build_verify/
+*.user
+*.suo
+*.pdb
+*.cache
+
+# Local tooling and temporary files
+*.tmp
+*.log

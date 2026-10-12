@@ -1,0 +1,3 @@
+<Window x:Class="SalesManagement_SysDev.F_Order" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="受注管理" Width="1240" Height="820" MinWidth="980" MinHeight="650" FontFamily="Meiryo" Background="#F4F6F8" WindowStartupLocation="CenterOwner" KeyDown="Window_KeyDown">
+  <Grid x:Name="Root" />
+</Window>

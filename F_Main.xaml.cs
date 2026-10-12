@@ -1,0 +1,8 @@
+using System.Windows; using System.Windows.Controls;
+namespace SalesManagement_SysDev;
+public partial class F_Main : Window
+{
+ public F_Main(){InitializeComponent();var e=AppSession.Employee!;status.Text=$"社員: {e.EmName}　役職: {e.Po.PoName}　営業所: {e.So.SoName}"; Add("顧客",typeof(F_Client),AppSession.IsAdmin||AppSession.IsSales);Add("商品・バーコード",typeof(F_Product),true);Add("在庫",typeof(F_Stock),AppSession.IsAdmin||AppSession.IsLogistics);Add("社員",typeof(F_Employee),AppSession.IsAdmin);Add("売上",typeof(F_Sale),AppSession.IsAdmin||AppSession.IsSales);Add("受注管理",typeof(F_OrderManagement),AppSession.IsAdmin||AppSession.IsSales||AppSession.IsLogistics);Add("受注登録",typeof(F_OrderRegistration),AppSession.IsAdmin||AppSession.IsSales);Add("注文",typeof(F_Chumon),AppSession.IsAdmin||AppSession.IsLogistics);Add("発注",typeof(F_Hattyu),AppSession.IsAdmin||AppSession.IsLogistics);Add("入庫",typeof(F_Warehousing),AppSession.IsAdmin||AppSession.IsLogistics);Add("出庫",typeof(F_Syukko),AppSession.IsAdmin||AppSession.IsLogistics);Add("入荷",typeof(F_Arrival),AppSession.IsAdmin||AppSession.IsSales);Add("出荷",typeof(F_Shipment),AppSession.IsAdmin||AppSession.IsSales);Add("パスワード変更",typeof(F_PasswordChange),true);}
+ void Add(string text,Type type,bool ok){if(!ok)return;var b=new Button{Content=text,Width=180,Height=60,Margin=new Thickness(8),FontSize=16};b.Click+=(s,e)=>{if(Activator.CreateInstance(type) is Window w)w.ShowDialog();};menu.Children.Add(b);}
+ void Logout_Click(object sender, RoutedEventArgs e){if(MessageBox.Show("ログアウトしますか？","確認",MessageBoxButton.YesNo,MessageBoxImage.Question)!=MessageBoxResult.Yes)return;AppSession.Employee=null;new F_login().Show();Close();}
+}
